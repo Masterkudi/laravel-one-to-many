@@ -18,6 +18,7 @@ return new class extends Migration
             $table->longText('body')->nullable();
             $table->string('slug')->unique();
             $table->string('image')->nullable();
+            $table->string('repository');
             $table->boolean('is_published')->default(false);
             $table->timestamp('published_at')->nullable();
 

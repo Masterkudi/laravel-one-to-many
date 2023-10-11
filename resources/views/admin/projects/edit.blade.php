@@ -37,6 +37,11 @@
             </div>
 
             <div class="mb-3">
+                <label class="form-label">Repository</label>
+                <input type="text" class="form-control" name="repository">
+            </div>
+
+            <div class="mb-3">
                 <label class="form-label">Data Pubblicazione</label>
                 <input type="date" class="form-control" name="published_at"
                     value="{{ $project->published_at?->toDateString() }}">
@@ -57,7 +62,7 @@
 
 
             <button class="btn btn-primary">Aggiorna</button>
-            <a href="{{ route('admin.projects.index', $project->slug) }}" class="btn btn-danger">Annulla</a>
+            <a href="{{ route('admin.projects.index') }}" class="btn btn-danger">Annulla</a>
         </form>
     </div>
 
