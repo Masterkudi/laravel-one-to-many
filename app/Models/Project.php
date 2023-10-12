@@ -17,6 +17,8 @@ class Project extends Model
         'title',
         'body',
         'image',
+        'repository',
         'slug',
+        'user_id',
     ];
 }

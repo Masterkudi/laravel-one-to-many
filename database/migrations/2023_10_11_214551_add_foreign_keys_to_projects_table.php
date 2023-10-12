@@ -22,7 +22,7 @@ return new class extends Migration
                 ->references('id')
                 ->on("users")
                 // se l'utente viene cancellato, cancella anche i suoi post
-                ->onDelete('cascade');
+                ->onDelete('set null');
         });
     }
     /**

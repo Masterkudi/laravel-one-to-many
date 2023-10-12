@@ -16,6 +16,9 @@
                             <div class="card-body bg-white text-center">
                                     <div>{{ $project->title }}</div>
                                     <div>{{ $project->published_at?->format('d/m/Y H:i') }}</div>
+                                    <div><a href="{{ $project->repository }}">
+                                        <i class="fa-brands fa-github fa-2xl" style="padding: 2rem" ></i></a>
+                                    </div>
                             </div>
                             <div class="d-flex justify-content-center">
                                 <div class="p-2">

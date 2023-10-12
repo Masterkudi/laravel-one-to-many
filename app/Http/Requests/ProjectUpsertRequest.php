@@ -36,6 +36,7 @@ class ProjectUpsertRequest extends FormRequest
             'title' => 'required|max:255',
             'body' => 'required',
             'image' => 'required|image|max:5120',
+            'repository' => 'required',
             'is_published' => 'nullable|boolean'
         ];
     }
@@ -54,6 +55,7 @@ class ProjectUpsertRequest extends FormRequest
             'body.required' => "body is required",
             'image.required' => "image is required",
             'image.max' => "",
+            'repository.required' => "The GitHub link is required",
         ];
     }
 }
