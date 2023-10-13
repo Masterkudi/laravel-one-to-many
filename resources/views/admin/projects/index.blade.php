@@ -11,21 +11,26 @@
                     <div class="col p-4">
                         <div class="card p-3">
                             <div>
-                                <img src={{ asset('/storage/' . $project->image) }} class="img-thumbnail" style="width: 300px">
+                                <img src={{ asset('/storage/' . $project->image) }} class="img-thumbnail"
+                                    style="width: 300px">
                             </div>
                             <div class="card-body bg-white text-center">
-                                    <div>{{ $project->title }}</div>
-                                    <div>{{ $project->published_at?->format('d/m/Y H:i') }}</div>
-                                    <div><a href="{{ $project->repository }}">
-                                        <i class="fa-brands fa-github fa-2xl" style="padding: 2rem" ></i></a>
-                                    </div>
+                                <div>{{ $project->title }}</div>
+                                @dump($project->category)
+                                <div>{{ $project->category }}</div>
+                                <div>{{ $project->published_at?->format('d/m/Y H:i') }}</div>
+                                <div><a href="{{ $project->repository }}">
+                                        <i class="fa-brands fa-github fa-2xl" style="padding: 2rem"></i></a>
+                                </div>
                             </div>
                             <div class="d-flex justify-content-center">
                                 <div class="p-2">
-                                    <a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-info"><i class="fa-solid fa-circle-info"></i></a>
+                                    <a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-info"><i
+                                            class="fa-solid fa-circle-info"></i></a>
                                 </div>
                                 <div class="p-2">
-                                    <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-warning"><i
+                                            class="fa-solid fa-pen-to-square"></i></a>
                                 </div>
                                 <div class="p-2">
                                     <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">

@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectUpsertRequest;
+use App\Models\Category;
 use App\Models\Project;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Symfony\Component\Uid\Uuid;
@@ -34,7 +38,12 @@ class ProjectController extends Controller
 
     public function create()
     {
-        return view('admin.projects.create');
+        $categories = Category::all();
+
+        return view('admin.projects.create', [
+            "categories"=> $categories,
+        ]);
+        
     }
 
     // STORE FUNCTION CON FUNZIONE SLUG
@@ -64,8 +73,9 @@ class ProjectController extends Controller
     public function edit($slug)
     { // la funzione edit recupera il progetto corrente, richiesto con lo slug e lo passa con la variabile 'project' alla view .edit
         $project = Project::where('slug', $slug)->firstOrFail();
+        $categories = Category::all();
 
-        return view('admin.projects.edit', compact('project'));
+        return view('admin.projects.edit', compact('project', 'categories'));
     }
 
     // UPDATE FUNCTION

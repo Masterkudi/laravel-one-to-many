@@ -35,9 +35,11 @@ class ProjectUpsertRequest extends FormRequest
         return [
             'title' => 'required|max:255',
             'body' => 'required',
-            'image' => 'required|image|max:5120',
-            'repository' => 'required',
-            'is_published' => 'nullable|boolean'
+            'image' => 'required|image|max:6000',
+            'repository' => 'required|max:255',
+            'is_published' => 'nullable|boolean',
+            // exists si assicura che l'id passato esista nella tabella categories
+            'category_id' => 'nullable|exists:categories,id'
         ];
     }
 

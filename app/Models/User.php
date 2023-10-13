@@ -42,4 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    
+    public function projects() {
+        return $this->hasMany(Project::class);
+    }
+
+    // la funzione userDetail rappresenta un solo dettaglio per ogni utente
+    public function userDetail() {
+        return $this->hasOne(userDetail::class);
+    }
 }
