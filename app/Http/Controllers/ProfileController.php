@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\UserDetail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,21 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $data = $request->validated();
+        $user = $request->user();
+
+        $user->fill($data);
+
+        // salvo i dettagli dell'utente
+        if ($user->userDetail) {
+            $user->userDetail->phone = $data['phone'];
+            $user->userDetail->save();
+        } else {
+            $userDetails = new userDetail();
+            $userDetails->user_id = $request->user()->id;
+            $userDetails->phone = $data['phone'];
+            $userDetails->save();
+        }
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;

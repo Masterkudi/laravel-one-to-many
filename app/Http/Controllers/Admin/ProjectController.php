@@ -61,6 +61,7 @@ class ProjectController extends Controller
 
         // identifico il percorso della cartella in cui la rotta andrà a salvare l'immagine
         $data['image'] = Storage::put('projects', $data['image']);
+        $data['user_id'] = Auth::id();
 
         // semplifico il procedimento usando il Project::create invece di newProject(), fill() e save() eseguendoli in un unico comando
         $project = Project::create($data);
@@ -123,7 +124,17 @@ class ProjectController extends Controller
 
     public function destroy($slug)
     {
+        // se un utente prova a cancellare un progetto ma non è loggato con l'email del gestore si ritorna err 403
+        if (Auth::user()->email !== "cudini.andrea@gmail.com") {
+            return abort(403);
+        }
+
         $project = Project::where("slug", $slug)->firstOrFail();
+
+        // se il progetto contiene un immagine, cancellando il progetto l'immagine rimane nel limbo
+        if ($project->image) {
+            Storage::delete($project->image);
+        }
 
         $project->delete();
 
