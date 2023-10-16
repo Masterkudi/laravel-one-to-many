@@ -27,10 +27,10 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Categoria</label>
-                <select class="form-select" name="category_id">
-                    @foreach ($categories as $category)
-                        <option value="{{ $category->id }}" {{ $project->category_id === $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                <label class="form-label">Tipologia</label>
+                <select class="form-select" name="type_id">
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}" {{ $project->type_id === $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
                     @endforeach
                 </select>
             </div>

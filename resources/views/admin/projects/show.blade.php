@@ -4,7 +4,7 @@
     <div class="container border border-dark p-3">
         <h1>{{ $project->title }}</h1>
 
-        <span class="badge m-2" style="background-color: rgb({{ $project->category->color}})">{{ $project->category->name }}</span>
+        <span class="badge m-2" style="background-color: rgb({{ $project->type->color}})">{{ $project->type->name }}</span>
 
         {{-- la funzione asset crea un link alla cartella public 
         che prende le immagini uploadate e le mette nella cartella storage --}}

@@ -25,16 +25,16 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Categoria</label>
-                <select class="form-select" name="category_id">
-                    @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                <label class="form-label">Tipologia</label>
+                <select class="form-select" name="type_id">
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach
                 </select>
             </div>
 
 
-           {{-- <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label class="form-label">Tags</label>
                 <div>
                     @foreach ($tags as $tag)
@@ -67,7 +67,7 @@
                 <input type="date" class="form-control" name="published_at">
             </div>
 
-            <a href="{{ route('admin.projects.index') }}" class="btn btn-primary">Salva</a>
+            <button type="submit" class="btn btn-primary">Salva</button>
             <a href="{{ route('admin.projects.index') }}" class="btn btn-danger">Annulla</a>
         </form>
     </div>

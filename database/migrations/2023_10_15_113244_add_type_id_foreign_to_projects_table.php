@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->unsignedBigInteger("category_id")->nullable();
+            $table->unsignedBigInteger("type_id")->nullable()->after("slug");
 
-            $table->foreign("category_id")
+            $table->foreign("type_id")
                 ->references('id')
-                ->on("categories")
+                ->on("types")
                 ->onDelete('set null');// quando la categoria viene cancellata il post rimane ma la categoria viene settata su null
         });
     }
@@ -27,7 +27,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            //
+            $table->dropForeign("projects_type_id_foreign");
+            $table->dropColumn("type_id");
         });
     }
 };

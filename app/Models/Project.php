@@ -20,7 +20,7 @@ class Project extends Model
         'repository',
         'slug',
         'user_id',
-        'category_id',
+        'type_id',
     ];
 
     
@@ -29,7 +29,7 @@ class Project extends Model
     }
 
     // un progetto appartiene ad una sola categoria
-    public function category() {
-        return $this->belongsTo(Category::class);
+    public function type() {
+        return $this->belongsTo(Type::class);
     }
 }
